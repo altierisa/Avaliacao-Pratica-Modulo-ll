@@ -30,6 +30,38 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route('/soma')
+def soma():
+    v1= float(request.args.get('valor1',5))
+    v2=float(request.args.get('valor2',2))
+    return{'resultado':v1+v2}
+
+@app.route('/subtrair')
+def subtrair():
+    v1=float(request.args.get('valor1',5))
+    v2=float(request.args.get('valor2',2))
+    return{'resultado':v1-v2}
+
+@app.route('/multiplicar')
+def multiplicar():
+    v1=float(request.args.get('valor1',5))
+    v2=float(request.args.get('valor2',2))
+    return{'resultado':v1*v2}
+
+@app.route('/dividir')
+def dividir():
+    v1=float(request.args.get('valor1',5))
+    v2=float(request.args.get('valor2',0))
+    if v2== 0:
+        return{'erro':f'Não é possível dividir {v1} por zero.'}
+    return{'resultado':v1/v2}
+
+
+
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 ```
